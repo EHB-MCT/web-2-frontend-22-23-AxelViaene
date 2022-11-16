@@ -1,0 +1,9 @@
+/* ----------GRID--------- */
+main {
+    display: grid;
+    grid-template-columns: 9.4% repeat(12, 1fr) 9.4%;
+    grid-template-rows: 3.5vw repeat(5, 20vw);
+    column-gap:20px ;
+    row-gap: 30px;
+    background-color: ;
+}
