@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../javascript/hunt.js" defer></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/hunt.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul id="navigation">
+                <img id="PukeiDex_Icon" src="../icons/PukeiDex_Icon.png" alt="">
+                <li id="PukeiDex">PukeiDex</li>
+                <li><a href="armory.html">Armory</a></li>
+                <li><a href="hunt.html">Hunt</a></li>
+                <li><a href="encyclopedia.html">Encyclopedia</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li>Log out</li>
+        </nav>
+    </header>
+
+    <main>
+        <div class="option weapon1">
+            <p class="weaponName">Greatsword 1</p>
+        </div>
+
+        <div class="option weapon2">
+            <p class="weaponName">Greatsword 2</p>
+        </div>
+
+        <div class="option weapon3">
+            <p class="weaponName">Greatsword 3</p>
+        </div>
+
+        <div class="option weapon4">
+            <p class="weaponName">Greatsword 4</p>
+        </div>
+
+        <div class="regionSelect">
+            <button onclick="show_hide()" class="regionButton">Region</button>
+            <div id="regionDropdown">
+                <p>Ancient Forest</p>
+                <p>Wildspire Waste</p>
+                <p>Coral Highlands</p>
+                <p>Rooten Vale</p>
+                <p>Elder Recess</p>
+            </div>
+        </div>
+
+        <div class="rankSelect">
+            <button onclick="show_hide()" class="rankButton">Monster Rank</button>
+            <div id="rankDropdown">
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+                <p>4</p>
+                <p>5</p>
+            </div>
+        </div>
+
+        <div class="huntDiv">
+            <div class="center">
+                <button id="huntButton">HUNT</button>
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>

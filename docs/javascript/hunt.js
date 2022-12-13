@@ -1,0 +1,1 @@
+console.log("loaded"),document.getElementById("regionDropdown").onclick=void document.getElementById("regionDropdown").classList.toggle("show");

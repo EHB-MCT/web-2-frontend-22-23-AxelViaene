@@ -1,1 +1,119 @@
- 
+@import "./master.css";
+
+
+/* ----------GRID--------- */
+main {
+    grid-template-rows: 12vw repeat(5, 4vw) 12vw;
+    font-family: europa-regular;
+}
+
+/* ----------HUNT--------- */
+
+.option {
+    background-color: white;
+}
+
+.weaponName {
+    text-align: center;
+}
+
+.regionSelect {
+    /* background-color: white; */
+    grid-column: 9/11;
+    grid-row: 2/3;
+    position: relative;
+    display: inline-block;
+}
+
+.regionButton {
+    color: black;
+    font-size: 20px;
+    padding: 1.2vw 3.8vw;
+    border: none;
+    cursor: pointer;
+}
+
+#regionDropdown {
+    /* display: none; */
+    /* position: absolute; */
+    background-color: white;
+
+}
+
+#regionDropdown p {
+    font-size: 18px;
+    padding: 10px;
+}
+
+.rankSelect {
+    grid-column: 11/13;
+    grid-row: 2/3;
+    position: relative;
+    display: inline-block;
+}
+
+.rankButton {
+    color: black;
+    font-size: 20px;
+    padding: 1.2vw 1.8vw;
+    border: none;
+    cursor: pointer;
+}
+
+#rankDropdown {
+    /* display: none; */
+    padding-left: 5px;
+    /* position: absolute; */
+    background-color: white;
+}
+
+#rankDropdown p {
+    font-size: 18px;
+    padding: 10px;
+}
+
+
+.huntDiv {
+    background-color: white;
+    grid-row: 6/7;
+    grid-column: 7/9;
+    position: relative;
+
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#huntButton {
+    background-color: white;
+    border: none;
+    font-size: 20px;
+}
+
+/* -----WEAPON-POSITION----- */
+
+.weapon1 {
+    grid-column: 3/5;
+    grid-row: 2/3;
+}
+
+.weapon2 {
+    grid-column: 5/7;
+    grid-row: 2/3;
+}
+
+.weapon3 {
+    grid-column: 3/5;
+    grid-row: 3/4;
+}
+
+.weapon4 {
+    grid-column: 5/7;
+    grid-row: 3/4;
+}
