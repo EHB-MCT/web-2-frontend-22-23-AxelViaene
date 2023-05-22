@@ -4,7 +4,7 @@
 /* ----------GRID--------- */
 main {
     grid-template-rows: 7vw repeat(3, 13vw);
-    font-family: europa-regular;
+    font-family: europa;
 }
 
 
@@ -53,23 +53,24 @@ main {
 #monster_page {
     background-color: #EFEFEF;
     margin: auto;
-    height: 400px;
-    max-width: 600px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    height: 450px;
+    max-width: 700px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    display: flex;
+    align-items: center;
     overflow: hidden;
 }
 
 .overlay_left {
-    float: left;
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
     width: 350px;
 }
 
 .overlay_monster_species {
+    padding-top: 12px;
+    margin-bottom: 5px;
     font-size: 16px;
     text-align: center;
 }
@@ -77,6 +78,7 @@ main {
 .overlay_monster_name {
     font-size: 22px;
     text-align: center;
+    margin-top: 0;
 }
 
 .overlay_img {
@@ -87,38 +89,51 @@ main {
 }
 
 .overlay_right {
-    background-color: lightblue;
-    width: 250px;
+    /* background-color: lightblue; */
+    width: 350px;
     overflow: hidden;
 }
 
 .overlay_known_regions {
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 100;
     text-align: center;
-    background-color: yellow;
-    margin: 10px 30px;
+    background-color: #7A7A7A;
+    color: white;
+    margin: 30px 20px 10px;
+    padding: 3px 0px;
 }
 
 .overlay_regions {
-    font-size: 18px;
+    font-size: 16px;
+    margin-left: 21px;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 
 .overlay_characteristics {
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 100;
     text-align: center;
-    background-color: yellow;
-    margin: 10px 30px;
+    background-color: #7A7A7A;
+    color: white;
+    margin: 15px 20px 10px;
+    padding: 3px 0px;
 }
 
 .overlay_description {
     font-size: 14px;
+    margin-left: 21px;
+    margin-top: 0;
+    margin-right: 20px;
 }
 
 .overlay_weaknesses {
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
     float: left;
     font-size: 18px;
-    width: 13.5vh;
+    width: 140px;
+    margin-left: 21px;
 }
 
 .overlay_weaknesses_icon {
@@ -127,7 +142,7 @@ main {
 }
 
 .overlay_resistances {
-    background-color: lightgray;
+    /* background-color: lightgray; */
     font-size: 18px;
 }
 
