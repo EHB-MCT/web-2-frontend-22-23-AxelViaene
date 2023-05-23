@@ -1,0 +1,66 @@
+@import "./master.css";
+
+/* ----------GRID--------- */
+main {
+    grid-template-rows: 6vw repeat(7, 4vw) 12vw;
+    font-family: europa-regular;
+}
+
+.title {
+    grid-row: 2/3;
+    grid-column: 7/9;
+    font-size: 2vw;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerBox {
+    grid-row: 4/8;
+    grid-column: 5/11;
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(11, 1fr);
+    background-color: grey;
+    align-items: center;
+    justify-content: center;
+}
+
+.registerUsername {
+    grid-row: 3/4;
+    grid-column: 4/8;
+}
+
+.registerEmail {
+    grid-row: 4/5;
+    grid-column: 4/8;
+}
+
+.registerPassword {
+    grid-row: 5/6;
+    grid-column: 4/8;
+}
+
+.registerPasswordRepeat {
+    grid-row: 6/7;
+    grid-column: 4/8;
+}
+
+#registerButton {
+    grid-row: 7/8;
+    grid-column: 5/7;
+    justify-self: center;
+}
+
+.loginMessage {
+    display: flex;
+    align-items: center;
+    grid-row: 8/9;
+    grid-column: 4/9;
+}
+
+.loginMessage p {
+    font-size: 0.7vw;
+    margin-right: 10px;
+}

@@ -8,7 +8,7 @@ module.exports = {
         armory: './src/armory.js',
         hunt: './src/hunt.js',
         login: './src/login.js',
-        logout: './src/logout.js',
+        register: './src/register.js',
         achievements: './src/achievements.js'
     },
     output: {
