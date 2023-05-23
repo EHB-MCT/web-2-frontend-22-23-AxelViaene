@@ -6,7 +6,10 @@ module.exports = {
         index: './src/index.js',
         encyclopedia: './src/encyclopedia.js',
         armory: './src/armory.js',
-        hunt: './src/hunt.js'
+        hunt: './src/hunt.js',
+        login: './src/login.js',
+        logout: './src/logout.js',
+        achievements: './src/achievements.js'
     },
     output: {
         filename: '[name].js',
