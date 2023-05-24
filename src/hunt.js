@@ -1,5 +1,13 @@
 window.onload = (event) => {
-console.log('loaded')
+console.log('load')
+
+document.addEventListener("click", toggleDropdownOn);
+document.addEventListener("click", toggleDropdownOff);
+document.addEventListener("click", on);
+document.addEventListener("click", off);
+previousButton.addEventListener('click', previousWeapon);
+nextButton.addEventListener('click', nextWeapon);
+}
 
 var dropdown = document.getElementById('regionDropdown');
 var regionButton = document.getElementById('regionButton');
@@ -7,7 +15,7 @@ var overlay = document.getElementById("overlay");
 var openOverlay = document.getElementById("huntButton");
 var nonOverlay = document.getElementById("huntOverlay");
 
-
+ 
 //Carousel//
 
 var carousel = document.querySelector('.carousel');
@@ -66,13 +74,5 @@ function off(event) {
         overlay.style.display = 'none';
         console.log("close overlay")
     }    
-}
-
-document.addEventListener("click", toggleDropdownOn);
-document.addEventListener("click", toggleDropdownOff);
-document.addEventListener("click", on);
-document.addEventListener("click", off);
-previousButton.addEventListener('click', previousWeapon);
-nextButton.addEventListener('click', nextWeapon);
 }
 
