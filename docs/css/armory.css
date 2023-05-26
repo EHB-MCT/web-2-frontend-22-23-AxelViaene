@@ -13,6 +13,7 @@ main {
     background-color: white;
     margin: none;
     border: 5px solid #EFEFEF;
+    border-radius: 5px;
 }
 
 .gsTop {
@@ -127,3 +128,6 @@ main {
     grid-column: 3/5;
     grid-row: 3/4;
 }
+
+
+/* ----OVERLAY---- */
