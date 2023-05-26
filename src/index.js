@@ -11,7 +11,7 @@ function component() {
 
 component();
 
-fetch('http://localhost:3000/users').then(response=> response.json()).then(data => {
+fetch('http://localhost:3000/users/:userid').then(response=> response.json()).then(data => {
     console.log(data);
     console.log('test')
     // console.log(`UserId is: ` + data[1].UserId);
