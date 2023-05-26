@@ -40,6 +40,7 @@ main {
     background-color: white;
     margin: none;
     border: 5px solid #EFEFEF;
+    border-radius: 5px;
 }
 
 .gsTop {
@@ -105,7 +106,6 @@ main {
 .leftCarousel {
     grid-row: 4/5;
     grid-column: 3/4;
-
 }
 
 .rightCarousel {
@@ -119,6 +119,18 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#previousWeapon {
+    scale: 80%;
+    float: right;
+    cursor: pointer;
+}
+
+#nextWeapon {
+    scale: 80%;
+    float: left;
+    cursor: pointer;
 }
 
 /* ----------RIGHT-SIDE--------- */
@@ -137,11 +149,14 @@ main {
 
 .rankIcon {
     max-width: 2vw;
+    cursor: pointer;
 }
 
 .regionSelect {
     grid-column: 10/12;
     grid-row: 4/5;
+    width: 200px;
+    height: 50px;
     background-color: #EFEFEF;
     position: relative;
     display: inline-block;
@@ -150,25 +165,41 @@ main {
 #regionButton {
     color: black;
     font-size: 20px;
-    padding: 0.5vw 3.8vw;
+    padding: 10px;
     border: none;
     cursor: pointer;
     background-color: #EFEFEF;
+    border-radius: 5px;
 }
 
 #regionDropdown {
     display: none;
-    /* position: absolute; */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
     background-color: white;
-    border: 2px solid #EFEFEF;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    ;
     z-index: 1;
 }
 
-#regionDropdown p {
+.regionOption {
     font-size: 18px;
-    margin-left: 5px;
+    padding: 10px;
+    margin: 0;
+    cursor: pointer;
+    border-bottom: 1px solid #EFEFEF;
 }
 
+.regionOption:hover {
+    background-color: #F5F5F5;
+}
+
+
+/* Hunt button */
 
 .huntDiv {
     background-color: white;
@@ -189,8 +220,15 @@ main {
 
 #huntButton {
     background-color: white;
-    border: 2px solid #EFEFEF;
+    border: 5px solid #EFEFEF;
     font-size: 20px;
+    padding: 10px 20px;
+    transition: 0.3s ease;
+}
+
+#huntButton:hover {
+    background-color: #EFEFEF;
+    cursor: pointer;
 }
 
 /* ----------OVERLAY--------- */
