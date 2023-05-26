@@ -45,7 +45,6 @@ header {
 #navigation li {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     margin-bottom: 30px;
 }
 
@@ -55,9 +54,16 @@ header {
     font-size: 32px;
     padding-right: 5px;
     margin-right: 130px;
+    transition: all 0.3s ease;
 }
 
 #PukeiDex_Icon {
     margin-bottom: 30px;
     margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+#PukeiDex_Icon:hover,
+#PukeiDex:hover {
+    transform: scale(1.1);
 }
