@@ -22,6 +22,11 @@ main {
     margin: auto;
     margin-top: 0;
     margin-bottom: 0;
+    transition: 0.3s ease;
+}
+
+.monsterInternal:hover {
+    transform: scale(1.2);
 }
 
 .monsterName {
@@ -38,6 +43,7 @@ main {
     padding: 5px;
     display: flex;
     margin: auto;
+    transition: 0.3s ease;
 }
 
 /*------OVERLAY-------*/
@@ -77,14 +83,15 @@ main {
 .overlay_monster_species {
     padding-top: 12px;
     margin-bottom: 5px;
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
 }
 
 .overlay_monster_name {
-    font-size: 22px;
+    font-size: 28px;
     text-align: center;
     margin-top: 0;
+    margin-bottom: 40px;
 }
 
 .overlay_img {

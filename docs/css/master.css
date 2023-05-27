@@ -42,6 +42,15 @@ header {
     color: black;
 }
 
+#navigation a:hover {
+    border-bottom-color: black;
+}
+
+#navigation a:active {
+    font-weight: bold;
+    color: blue;
+}
+
 #navigation li {
     display: flex;
     align-items: center;
