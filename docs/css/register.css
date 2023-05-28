@@ -19,48 +19,96 @@ main {
 .registerBox {
     grid-row: 4/8;
     grid-column: 5/11;
-    display: grid;
-    grid-template-rows: repeat(8, 1fr);
-    grid-template-columns: repeat(11, 1fr);
-    background-color: grey;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.registerUsername {
-    grid-row: 3/4;
-    grid-column: 4/8;
+#form {
+    height: 23vw;
+    color: #130D0C;
+    background-color: #7A7A7A;
+    display: grid;
+    grid-template-rows: repeat(15, 1fr);
+    grid-template-columns: repeat(11, 1fr);
+    padding: 1rem;
+    border-radius: 5px;
 }
 
-.registerEmail {
+.username {
     grid-row: 4/5;
-    grid-column: 4/8;
+    grid-column: 3/9;
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
 
-.registerPassword {
-    grid-row: 5/6;
-    grid-column: 4/8;
-}
-
-.registerPasswordRepeat {
+.email {
     grid-row: 6/7;
-    grid-column: 4/8;
+    grid-column: 3/9;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.password {
+    grid-row: 10/11;
+    grid-column: 3/9;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.confirmpassword {
+    grid-row: 8/9;
+    grid-column: 2/9;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+#userLabel,
+#emailLabel,
+#passwordLabel,
+#confirmpasswordLabel {
+    padding: 0.5rem;
+}
+
+#registerUsername,
+#registerEmail,
+#registerPassword,
+#confirmregisterPassword {
+    margin-bottom: 0.5rem;
 }
 
 #registerButton {
-    grid-row: 7/8;
-    grid-column: 5/7;
+    grid-row: 13/14;
+    grid-column: 5/8;
     justify-self: center;
+    padding: 0.5rem 1rem;
+    background-color: #EFEFEF;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .loginMessage {
     display: flex;
     align-items: center;
-    grid-row: 8/9;
-    grid-column: 4/9;
+    justify-content: center;
+    grid-row: 15/16;
+    grid-column: 3/10;
 }
 
 .loginMessage p {
-    font-size: 0.7vw;
     margin-right: 10px;
+}
+
+#loginButton {
+    border: none;
+    cursor: pointer;
+    background-color: #EFEFEF;
+    padding: 0.3rem 0.4rem;
+    border-radius: 5px;
 }
