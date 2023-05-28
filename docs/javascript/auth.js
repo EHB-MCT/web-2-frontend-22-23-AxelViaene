@@ -1,0 +1,1 @@
+window.onload=o=>{let e=sessionStorage.getItem("user");e?console.log(`Welcome ${e.name}`):window.location.href="../html/login.html"};

@@ -9,7 +9,8 @@ module.exports = {
         hunt: './src/hunt.js',
         login: './src/login.js',
         register: './src/register.js',
-        achievements: './src/achievements.js'
+        achievements: './src/achievements.js',
+        auth: './src/auth.js'
     },
     output: {
         filename: '[name].js',
