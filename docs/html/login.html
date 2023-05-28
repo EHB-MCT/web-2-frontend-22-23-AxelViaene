@@ -17,16 +17,22 @@
             <p class="PukeiDex">PukeiDex</p>
         </div>
         <div class="loginBox">
-            <form>
-                <label for="Username">Username:</label>
-                <input type="text" id="loginUsername">
+            <form id="form">
+                <div class="username">
+                    <label for="Username" id="userLabel">Username:</label>
+                    <input type="text" id="loginUsername">
+                </div>
+                <div class="password">
+                    <label for="Password" id="passwordLabel">Password:</label>
+                    <input type="text" id="loginPassword">
+                </div>
+                <button id="loginButton">Login</button>
+                <div class="registerMessage">
+                    <p>No account?</p>
+                    <button id="registerButton">Register</button>
+                </div>
             </form>
-            <div class="loginPassword">Password</div>
-            <button id="loginButton">Login</button>
-            <div class="registerMessage">
-                <p>No account?</p>
-                <button id="registerButton">Register</button>
-            </div>
+
         </div>
     </main>
 
