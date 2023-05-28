@@ -1,7 +1,4 @@
 window.onload = (event) => {
-    
-
-const { over } = require("lodash");
 
 var overlay = document.getElementById("overlay")
 var nonOverlay = document.getElementById("monster_page");
