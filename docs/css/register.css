@@ -16,6 +16,19 @@ main {
     align-items: center;
 }
 
+.PukeiDex {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    padding-right: 5px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.PukeiDex:hover {
+    transform: scale(1.1);
+}
+
 .registerBox {
     grid-row: 4/8;
     grid-column: 5/11;
