@@ -46,10 +46,6 @@ header {
     border-bottom-color: black;
 }
 
-#navigation a:active {
-    font-weight: bold;
-    color: blue;
-}
 
 #navigation li {
     display: flex;

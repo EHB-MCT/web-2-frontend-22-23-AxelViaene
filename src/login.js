@@ -11,7 +11,6 @@ window.onload = (event) => {
                 //check for login
                 getData("https://web2-course-project.onrender.com/loginuser", "POST", user).then(result => {
                     sessionStorage.setItem('user', JSON.stringify(result.data))
-                    
                 })
             })
         
@@ -23,6 +22,7 @@ window.onload = (event) => {
             },
             body: JSON.stringify(data)
         });
+        window.location.assign("../html/encyclopedia.html")
         return await resp.json();
     }
 

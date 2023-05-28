@@ -1,5 +1,5 @@
 window.onload = (event) => {
-console.log('load')
+console.log('load hunt.js')
 
 document.addEventListener("click", toggleDropdownOn);
 document.addEventListener("click", toggleDropdownOff);
@@ -12,7 +12,7 @@ nextButton.addEventListener('click', nextWeapon);
 //Region select
 var dropdown = document.getElementById('regionDropdown');
 var regionButton = document.getElementById('regionButton');
-var regions = document.getElementsByClassName('regionOption')
+var regions = document.getElementsByClassName('regionOption');
 var overlay = document.getElementById("overlay");
 var openOverlay = document.getElementById("huntButton");
 var nonOverlay = document.getElementById("huntOverlay");

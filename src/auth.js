@@ -1,13 +1,15 @@
 window.onload = (event) => {
 
-let user = sessionStorage.getItem('user')
+    let user = JSON.parse(sessionStorage.getItem('user'))
+console.log(user)
 
 if(user) {
-    console.log(`Welcome ${user.name}`)
+    document.getElementById('authname').innerText = `Welcome ${user.name}`
+    console.log(`Welcomeeee ${user.name}`)
 } else {
     window.location.href = "../html/login.html"
 }
-
-
-
 }
+
+
+
