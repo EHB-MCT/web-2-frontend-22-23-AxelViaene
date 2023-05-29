@@ -1,4 +1,5 @@
 window.onload = (event) => {
+    console.log('load encycopedia.js')
 
 var overlay = document.getElementById("overlay")
 var nonOverlay = document.getElementById("monster_page");
