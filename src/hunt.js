@@ -1,12 +1,22 @@
 window.onload = (event) => {
 console.log('load hunt.js')
 
-document.addEventListener("click", toggleDropdownOn);
-document.addEventListener("click", toggleDropdownOff);
-document.addEventListener("click", huntResultOverlay);
-document.addEventListener("click", huntResultClose);
-previousButton.addEventListener('click', previousWeapon);
-nextButton.addEventListener('click', nextWeapon);
+try {
+    const userdata = sessionStorage.getItem('user');
+    if (!userdata) {
+        window.location.href = '../html/login.html'
+        return
+    }
+
+const user = JSON.parse(userdata)
+if(user) {
+    document.getElementById('authname').innerText = `Welcome ${user.name}`
+    console.log(`Welcomeeee ${user.name}`)
+    } else {
+    window.location.href = '../html/login.html'
+    }
+} catch (error) {
+    console.error('error', error)
 }
 
 //Region select
@@ -25,6 +35,14 @@ var currentIndex = 0;
 var previousButton = document.getElementById("previousWeapon");
 var nextButton = document.getElementById("nextWeapon");
 var carouselNumber = document.querySelector('.carouselNumber');
+
+document.addEventListener("click", toggleDropdownOn);
+document.addEventListener("click", toggleDropdownOff);
+document.addEventListener("click", huntResultOverlay);
+document.addEventListener("click", huntResultClose);
+previousButton.addEventListener('click', previousWeapon);
+nextButton.addEventListener('click', nextWeapon);
+
 
 
 //carousel
@@ -106,3 +124,4 @@ rankIcons.forEach(function(icon, index) {
      
     });
   });
+}
