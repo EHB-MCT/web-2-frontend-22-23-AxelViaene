@@ -11,7 +11,7 @@ function component() {
 
 component();
 
-fetch('http://localhost:3000/users/:userid').then(response=> response.json()).then(data => {
+fetch('https://web2-course-project.onrender.com/users').then(response=> response.json()).then(data => {
     console.log(data);
     console.log('test')
     // console.log(`UserId is: ` + data[1].UserId);
