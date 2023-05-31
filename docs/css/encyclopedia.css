@@ -196,7 +196,7 @@ main {
 
 /*---OVERLAYS-POSITION---*/
 
-#monster_page {
+/* #monster_page {
     background-color: #EFEFEF;
     margin: auto;
     height: 450px;
@@ -204,11 +204,11 @@ main {
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    display: flex;
+    display: none;
     align-items: center;
     overflow: hidden;
     border-radius: 6px;
-}
+} */
 
 #monster_page1 {
     background-color: #EFEFEF;
@@ -218,7 +218,7 @@ main {
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    display: flex;
+    display: none;
     align-items: center;
     overflow: hidden;
     border-radius: 6px;
@@ -232,7 +232,7 @@ main {
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    display: flex;
+    display: none;
     align-items: center;
     overflow: hidden;
     border-radius: 6px;
@@ -292,4 +292,35 @@ main {
     align-items: center;
     overflow: hidden;
     border-radius: 6px;
+}
+
+/*-----UNIQUE-ID'S-----*/
+
+#monsterName1,
+#monsterName2,
+#monsterName3,
+#monsterName4,
+#monsterName5,
+#monsterName6,
+#monsterName7 {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 5px;
+}
+
+#monsterIcon1,
+#monsterIcon2,
+#monsterIcon3,
+#monsterIcon4,
+#monsterIcon5,
+#monsterIcon6,
+#monsterIcon7 {
+    background-color: #EFEFEF;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    max-width: 10vw;
+    padding: 5px;
+    display: flex;
+    margin: auto;
+    transition: 0.3s ease;
 }
