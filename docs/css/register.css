@@ -66,16 +66,16 @@ main {
 }
 
 .password {
-    grid-row: 10/11;
-    grid-column: 3/9;
+    grid-row: 8/9;
+    grid-column: 2/9;
     display: flex;
     align-items: center;
     justify-content: right;
 }
 
 .confirmpassword {
-    grid-row: 8/9;
-    grid-column: 2/9;
+    grid-row: 10/11;
+    grid-column: 3/9;
     display: flex;
     align-items: center;
     justify-content: right;

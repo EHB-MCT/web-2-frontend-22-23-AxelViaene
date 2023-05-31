@@ -47,8 +47,11 @@ const user = JSON.parse(userdata);
         greatswords.forEach(function(greatsword) {
             fetch(`https://mhw-db.com/weapons/${greatsword}`).then(response =>
             response.json()).then(apidata => {
+               console.log(apidata)
+                if(apidata.elements[0].damage == undefined) {
+                    elemdg = null
+                }
 
-               
                 let html = `<div class="greatsword gs${swordcounter}">
                 <div class="gsInternal">
                     <div class="gsTop">
@@ -66,8 +69,8 @@ const user = JSON.parse(userdata);
                     <div class="gsStatsRight">
                         <p class="gsAttack">Attack: ${apidata.attack.display}</p>
                         <div class="element">
-                            <p class="gsElementDamage">${apidata.elements[0].damage}</p>
-                            <img class="gsElement" src="../icons/elements/${apidata.elements[0].type}.png" alt="">
+                            <p class="gsElementDamage"></p>
+                            <img class="gsElement" src="../icons/elements/.png" alt="">
                         </div>
                     </div>
                 </div>
