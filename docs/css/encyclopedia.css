@@ -61,20 +61,6 @@ main {
     z-index: 2;
 }
 
-#monster_page {
-    background-color: #EFEFEF;
-    margin: auto;
-    height: 450px;
-    max-width: 700px;
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 6px;
-}
-
 .overlay_left {
     /* background-color: lightgreen; */
     width: 350px;
@@ -206,4 +192,104 @@ main {
 .monster6 {
     grid-column: 3/5;
     grid-row: 3/4;
+}
+
+/*---OVERLAYS-POSITION---*/
+
+#monster_page {
+    background-color: #EFEFEF;
+    margin: auto;
+    height: 450px;
+    max-width: 700px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+#monster_page1 {
+    background-color: #EFEFEF;
+    margin: auto;
+    height: 450px;
+    max-width: 700px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+#monster_page2 {
+    background-color: #EFEFEF;
+    margin: auto;
+    height: 450px;
+    max-width: 700px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+#monster_page3 {
+    background-color: #EFEFEF;
+    margin: auto;
+    height: 450px;
+    max-width: 700px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+#monster_page4 {
+    background-color: #EFEFEF;
+    margin: auto;
+    height: 450px;
+    max-width: 700px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+#monster_page5 {
+    background-color: #EFEFEF;
+    margin: auto;
+    height: 450px;
+    max-width: 700px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+#monster_page6 {
+    background-color: #EFEFEF;
+    margin: auto;
+    height: 450px;
+    max-width: 700px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
 }
