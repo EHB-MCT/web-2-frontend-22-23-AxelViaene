@@ -196,21 +196,7 @@ main {
 
 /*---OVERLAYS-POSITION---*/
 
-/* #monster_page {
-    background-color: #EFEFEF;
-    margin: auto;
-    height: 450px;
-    max-width: 700px;
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
-    display: none;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 6px;
-} */
-
-#monster_page1 {
+#monster_page {
     background-color: #EFEFEF;
     margin: auto;
     height: 450px;
@@ -224,48 +210,10 @@ main {
     border-radius: 6px;
 }
 
-#monster_page2 {
-    background-color: #EFEFEF;
-    margin: auto;
-    height: 450px;
-    max-width: 700px;
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
-    display: none;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 6px;
-}
-
-#monster_page3 {
-    background-color: #EFEFEF;
-    margin: auto;
-    height: 450px;
-    max-width: 700px;
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 6px;
-}
-
-#monster_page4 {
-    background-color: #EFEFEF;
-    margin: auto;
-    height: 450px;
-    max-width: 700px;
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 6px;
-}
-
+#monster_page1,
+#monster_page2,
+#monster_page3,
+#monster_page4,
 #monster_page5 {
     background-color: #EFEFEF;
     margin: auto;
@@ -280,19 +228,6 @@ main {
     border-radius: 6px;
 }
 
-#monster_page6 {
-    background-color: #EFEFEF;
-    margin: auto;
-    height: 450px;
-    max-width: 700px;
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 6px;
-}
 
 /*-----UNIQUE-ID'S-----*/
 
