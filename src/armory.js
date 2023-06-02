@@ -39,18 +39,17 @@ const user = JSON.parse(userdata);
         var greatswords = link.map(function(result) {
             return result.GreatswordId
         })
-
-        var HTMLmain = document.getElementById('main');
+        console.log(greatswords)
         var swordcounter = 1;
         
         //displaying the amount of greatswords in user collection
         greatswords.forEach(function(greatsword) {
             fetch(`https://mhw-db.com/weapons/${greatsword}`).then(response =>
             response.json()).then(apidata => {
-               console.log(apidata)
-                if(apidata.elements[0].damage == undefined) {
-                    elemdg = null
-                }
+               console.log(apidata.id)
+                // if(apidata.elements[0].damage == undefined) {
+                //     elemdg = null
+                // }
 
                 let html = `<div class="greatsword gs${swordcounter}">
                 <div class="gsInternal">
@@ -70,13 +69,17 @@ const user = JSON.parse(userdata);
                         <p class="gsAttack">Attack: ${apidata.attack.display}</p>
                         <div class="element">
                             <p class="gsElementDamage"></p>
-                            <img class="gsElement" src="../icons/elements/.png" alt="">
+                            <img class="gsElement" src="../icons/elements/water.png" alt="">
                         </div>
                     </div>
                 </div>
             </div>`;
-                HTMLmain.insertAdjacentHTML('beforeend', html)
-                swordcounter++;
+            var tempDiv = document.createElement('div')
+            tempDiv.className = `greatsword gs${swordcounter}`
+            tempDiv.innerHTML = html
+            var mainElement = document.getElementById('main')
+            mainElement.appendChild(tempDiv)
+            swordcounter++;
             })
        })
 })
