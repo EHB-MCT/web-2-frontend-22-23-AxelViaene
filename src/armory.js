@@ -33,20 +33,20 @@ const user = JSON.parse(userdata);
         var link = data.filter(function(result) {
             return result.UserId === UserId;
         });
-        // console.log(link)
+        console.log(link)
 
         //getting the Id's of the greatswords
         var greatswords = link.map(function(result) {
             return result.GreatswordId
         })
-        console.log(greatswords)
         var swordcounter = 1;
+        // console.log(greatswords)
         
         //displaying the amount of greatswords in user collection
         greatswords.forEach(function(greatsword) {
             fetch(`https://mhw-db.com/weapons/${greatsword}`).then(response =>
             response.json()).then(apidata => {
-               console.log(apidata.id)
+            //    console.log(apidata.id)
                 // if(apidata.elements[0].damage == undefined) {
                 //     elemdg = null
                 // }
@@ -54,7 +54,7 @@ const user = JSON.parse(userdata);
                 let html = `<div class="greatsword gs${swordcounter}">
                 <div class="gsInternal">
                     <div class="gsTop">
-                        <button class="close-button">
+                        <button class="close-button btn${swordcounter}">
                             <span class="close-icon">&times;</span>
                         </button>
                         <p class="gsName">${apidata.name}
@@ -74,11 +74,25 @@ const user = JSON.parse(userdata);
                     </div>
                 </div>
             </div>`;
-            var tempDiv = document.createElement('div')
-            tempDiv.className = `greatsword gs${swordcounter}`
-            tempDiv.innerHTML = html
+
+            //inserting html
+            var gsDiv = document.createElement('div')
+            gsDiv.className = `greatsword gs${swordcounter}`
+            gsDiv.innerHTML = html
             var mainElement = document.getElementById('main')
-            mainElement.appendChild(tempDiv)
+            mainElement.appendChild(gsDiv)
+
+            //remove the clicked weapon out of Users_Greatswords
+            var closeButton = gsDiv.getElementsByClassName(`btn${swordcounter}`)[0]
+            closeButton.addEventListener('click', function() {
+                var confirmation = confirm('Are you sure you want to remove this weapon from your collection?')
+                if(confirmation) {
+                    console.log(link)
+                    // fetch('https://web2-course-project.onrender.com/delete_user_greatsword?usergreatswordid=')
+                }
+                console.log(link[swordcounter-1])
+            });
+            // move the variables and if statement around so it can reach parts outside of the forEach funtion
             swordcounter++;
             })
        })
