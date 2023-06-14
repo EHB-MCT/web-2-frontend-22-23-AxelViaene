@@ -34,7 +34,7 @@ const user = JSON.parse(userdata);
             return result.UserId === UserId;
         });
         console.log(link)
-
+        
         //getting the Id's of the greatswords
         var greatswords = link.map(function(result) {
             return result.GreatswordId
@@ -82,19 +82,27 @@ const user = JSON.parse(userdata);
             var mainElement = document.getElementById('main')
             mainElement.appendChild(gsDiv)
 
+
             //remove the clicked weapon out of Users_Greatswords
             var closeButton = gsDiv.getElementsByClassName(`btn${swordcounter}`)[0]
             closeButton.addEventListener('click', function() {
-                var confirmation = confirm('Are you sure you want to remove this weapon from your collection?')
-                if(confirmation) {
+                return function () {
+                     var confirmation = confirm('Are you sure you want to remove this weapon from your collection?')
+                    if(confirmation) {
                     console.log(link)
+        
                     // fetch('https://web2-course-project.onrender.com/delete_user_greatsword?usergreatswordid=')
-                }
-                console.log(link[swordcounter-1])
+                    }
+                    console.log(link[1])
+                    }
+               
             });
             // move the variables and if statement around so it can reach parts outside of the forEach funtion
             swordcounter++;
+          
             })
-       })
+        })
+       //to add new weapon:
+       //check how many greatsword the user has. if less than 8?10? then the option for a new swords gets added
 })
 }
