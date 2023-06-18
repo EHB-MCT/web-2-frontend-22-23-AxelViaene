@@ -40,6 +40,23 @@ console.log(uniqueMonsters)
 var HTMLmain = document.getElementById('main');
 var monstercounter = 1
 
+//insert all empty monsters
+//make list of all monster ID's
+var monsterList = [17, 18, 19]
+//pull from list and put in div to insert
+monsterList.forEach(function(monster) {
+  let htmldata = 
+            `<div id="${monster}" class="monster m${monster}">
+            <div class="monsterInternal">
+              <img class="monsterIcon" src="../icons/monsters/Kirin.png" alt="">
+              <p class="monsterName">Kirin</p>
+            </div>
+            </div>`;
+            HTMLmain.insertAdjacentHTML('beforeend', htmldata);
+})
+
+
+
 //displaying the amount of monsters in user collection
 uniqueMonsters.forEach(function(monster) {
     fetch(`https://mhw-db.com/monsters/${monster}`).then(response => 
@@ -49,10 +66,10 @@ uniqueMonsters.forEach(function(monster) {
             // console.log(apidata.name)
 
             let htmldata = 
-            `<div id="${monster}" class="monster monster${monstercounter}">
+            `<div id="${monster}" class="monster m${monster}">
             <div class="monsterInternal">
               <img class="monsterIcon" src="../icons/monsters/${apidata.name}.png" alt="">
-              <p class="monsterName" id="monstername${monstercounter}">${apidata.name}</p>
+              <p class="monsterName">${apidata.name}</p>
             </div>
             </div>`;
 
@@ -78,7 +95,7 @@ uniqueMonsters.forEach(function(monster) {
             })
         })
         
-        var htmlOverlay = `<div id="monster_page2">
+        var htmlOverlay = `<div id="monster_page">
         <div class="overlay_left">
           <p class="overlay_monster_species">Flying Wyvern</p>
           <p class="overlay_monster_name">Tobi</p>
@@ -113,6 +130,9 @@ uniqueMonsters.forEach(function(monster) {
         overlay.style.display = 'block';
        }
    }
+
+
+   
    
    function off(event) {   
        if (event.target == overlay) {
@@ -125,8 +145,8 @@ uniqueMonsters.forEach(function(monster) {
     document.getElementById('overlay').innerHTML = ``
   }
    
-   document.addEventListener("click", on)
-   document.addEventListener("click", off);
+  document.addEventListener("click", on)
+  document.addEventListener("click", off);
 
 }) 
 }
