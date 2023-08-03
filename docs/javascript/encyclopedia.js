@@ -1,1 +1,209 @@
-window.onload=e=>{console.log("load encycopedia.js");const n=sessionStorage.getItem("user"),s=JSON.parse(n);try{if(!n)return void(window.location.href="../html/login.html");s?(document.getElementById("authname").innerText=`Welcome ${s.name}`,console.log(`Welcomeeee ${s.name}`)):window.location.href="../html/login.html"}catch(e){console.error("error",e)}const o=s.UserId;fetch("https://web2-course-project.onrender.com/hunts").then((e=>e.json())).then((e=>{var n=e.filter((function(e){return e.UserId===o})).map((function(e){return e.MonsterId})),s=new Set(n);console.log(s);var t=document.getElementById("main");[17,18,19].forEach((function(e){let n=`<div id="${e}" class="monster m${e}">\n            <div class="monsterInternal">\n              <img class="monsterIcon" src="../icons/monsters/Kirin.png" alt="">\n              <p class="monsterName">Kirin</p>\n            </div>\n            </div>`;t.insertAdjacentHTML("beforeend",n)})),s.forEach((function(e){fetch(`https://mhw-db.com/monsters/${e}`).then((e=>e.json())).then((n=>{console.log(e);let s=`<div id="${e}" class="monster m${e}">\n            <div class="monsterInternal">\n              <img class="monsterIcon" src="../icons/monsters/${n.name}.png" alt="">\n              <p class="monsterName">${n.name}</p>\n            </div>\n            </div>`;t.insertAdjacentHTML("beforeend",s)}))}));var r=document.getElementById("overlay"),a=document.getElementsByClassName("monsterName"),c=document.getElementsByClassName("monsterIcon"),l=document.getElementById("overlay");document.addEventListener("click",(function(e){(Array.from(a).some((n=>n===e.target))||Array.from(c).some((n=>n===e.target)))&&(s.forEach((function(e){fetch(`https://mhw-db.com/monsters/${e}`).then((e=>e.json())).then((e=>{console.log(e)}))})),l.insertAdjacentHTML("beforeend",'<div id="monster_page">\n        <div class="overlay_left">\n          <p class="overlay_monster_species">Flying Wyvern</p>\n          <p class="overlay_monster_name">Tobi</p>\n          <img class="overlay_img" src="../icons/monsters/Behemoth.png" alt="">\n        </div>\n        <div class="overlay_right">\n          <p class="overlay_known_regions">Known Regions</p>\n          <p class="overlay_regions">Ancient Forest</p>\n          <p class="overlay_regions">Ancient Forest</p>\n          <p class="overlay_regions">Ancient Forest</p>\n          <p class="overlay_regions">Ancient Forest</p>\n          <p class="overlay_regions">Ancient Forest</p>\n          <p class="overlay_characteristics">Characteristics</p>\n          <p class="overlay_description">A nefarious flying wyvern that travels the New World in search of prey. It\n            scatters explosive scales over a wide area to prey on whatever gets caught in the blast.</p>\n          <div class="overlay_weaknesses">\n            <p>Weaknesses</p>\n            <img class="overlay_weaknesses_icon" src="../icons/elements/Dragon.png" alt="">\n            <img class="overlay_weaknesses_icon" src="../icons/elements/Poison.png" alt="">\n            <img class="overlay_weaknesses_icon" src="../icons/elements/Water.png" alt="">\n          </div>\n          <div class="overlay_resistances">\n            <p>Resistances</p>\n            <img class="overlay_resistances_icon" src="../icons/elements/Fire.png" alt="">\n          </div>\n        </div>\n      </div>'),r.style.display="block")})),document.addEventListener("click",(function(e){e.target==r&&(document.getElementById("overlay").innerHTML="",r.style.display="none")}))}))};
+window.onload = (event) => {
+    const userdata = sessionStorage.getItem('user');
+    const user = JSON.parse(userdata)
+
+    //authentication
+    try {
+        
+        if (!userdata) {
+            window.location.href = '../html/login.html'
+            return
+        }
+    
+    if(user) {
+        document.getElementById('authname').innerText = `Welcome ${user.name}`
+        console.log(`Welcomeeee ${user.name}`)
+        } else {
+        window.location.href = '../html/login.html'
+        }
+    } catch (error) {
+        console.error('error', error)
+    }
+
+//Taking UserId from sessionStorage and looking in Hunts what monsters have been encountered by this UserId
+const UserId = user.UserId;
+fetch('https://web2-course-project.onrender.com/hunts').then(response =>
+response.json()).then(data => {
+
+var link = data.filter(function(result) {
+    return result.UserId === UserId
+})
+
+//getting the Id's of the monsters
+var allMonsters = link.map(function(result) {
+    return result.MonsterId
+})
+var uniqueMonsters = new Set(allMonsters)
+console.log(uniqueMonsters)
+
+var HTMLmain = document.getElementById('main');
+var monstercounter = 1
+
+//insert all empty monsters
+//make list of all monster ID's
+var monsterList = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39,
+                    40, 41, 42, 43, 44, 45, 48, 49, 50, 53]
+//pull from list and put in div to insert
+monsterList.forEach(function(monster) {
+  let htmldata = 
+            `<div id="${monster}" class="monster m${monster} test-section">
+            <div class="monsterInternal">
+              <img id="img${monster}" class="monsterIcon encyclick" src="../icons/monsters/Kirin.png" alt="">
+              <p id="name${monster}" class="monsterName encyclick"> -</p>
+            </div>
+            </div>`;
+            HTMLmain.insertAdjacentHTML('beforeend', htmldata);
+})
+
+//displaying the amount of monsters in user collection
+uniqueMonsters.forEach(function(monster) {
+    fetch(`https://mhw-db.com/monsters/${monster}`).then(response => 
+        response.json()).then(apidata=> {
+
+            let htmldata = 
+            `<div id="${monster}" class="monster m${monster} test-section">
+            <div class="monsterInternal">
+              <img id="img${monster}" class="monsterIcon encyclick" src="../icons/monsters/${apidata.name}.png" alt="">
+              <p id="name${monster}" class="monsterName encyclick">${apidata.name}</p>
+            </div>
+            </div>`;
+
+            HTMLmain.insertAdjacentHTML('beforeend', htmldata);
+            monstercounter++;
+        })
+    })    
+
+ 
+
+//overlay
+var overlay = document.getElementById("overlay")
+var openOverlay = document.getElementsByClassName("monsterName")
+var openOverlay2 = document.getElementsByClassName("monsterIcon")
+
+
+var overlayHTML = document.getElementById('overlay');
+//insert the overlay
+
+var fClick = true
+var motherdivId = 1
+
+if (fClick) {
+  fClick = false
+  document.addEventListener('click', function (event) {
+      var clickedSection = event.target.closest('.test-section')
+      if (clickedSection) {
+        motherdivId = clickedSection.id;
+      } 
+    })
+}
+
+function on(event) {
+    if (Array.from(openOverlay).some(element => element === event.target) || Array.from(openOverlay2).some(element => element === event.target)) {
+    uniqueMonsters.forEach(function(monster) {
+        fetch(`https://mhw-db.com/monsters/${monster}`).then(response =>
+        response.json()).then(apidata => {
+          
+          //    console.log(apidata)
+          //    console.log("----------")
+          //    console.log(motherdivId)
+          //    console.log("----------")
+
+          //apidata WHERE apidata.id = motherdivId
+          var monsterArray = Object.values(apidata)
+
+          var clickedMotherId = typeof motherdivId === 'string' ? parseInt(motherdivId) : motherdivId
+
+          // var clickedMonster = apidata[clickedMonsterId]
+          var compareIds = monsterArray.find(({id}) => id === clickedMotherId)
+
+          // var monsterWithDynamicId = monsterArray.find(monster => monster.id === clickedMonsterId)
+          // var clickedMonsterName = monsterWithDynamicId ? monsterWithDynamicId.name : null
+
+          // let monsterWithDynamicId = null
+          // for (var monster of monsterArray) {
+          //   console.log(monster.id)
+          //   console.log("---")
+          //   if (monster.id === clickedMonsterId) {
+          //     monsterWithDynamicId = monster
+          //     break
+          //   }
+          // }s
+          
+          // var clickedMonsterName = clickedMonster ? clickedMonster.name : null
+
+          console.log(apidata.id)
+            console.log(compareIds)
+
+
+          
+        })
+      console.log("test2")
+    })
+    
+    var htmlOverlay = `<div id="monster_page">
+    <div class="overlay_left">
+      <p class="overlay_monster_species">Flying Wyvern</p>
+      <p class="overlay_monster_name">Tobi</p>
+      <img class="overlay_img" src="../icons/monsters/Behemoth.png" alt="">
+    </div>
+    <div class="overlay_right">
+      <p class="overlay_known_regions">Known Regions</p>
+      <p class="overlay_regions">Ancient Forest</p>
+      <p class="overlay_regions">Ancient Forest</p>
+      <p class="overlay_regions">Ancient Forest</p>
+      <p class="overlay_regions">Ancient Forest</p>
+      <p class="overlay_regions">Ancient Forest</p>
+      <p class="overlay_characteristics">Characteristics</p>
+      <p class="overlay_description">A nefarious flying wyvern that travels the New World in search of prey. It
+        scatters explosive scales over a wide area to prey on whatever gets caught in the blast.</p>
+      <div class="overlay_weaknesses">
+        <p>Weaknesses</p>
+        <img class="overlay_weaknesses_icon" src="../icons/elements/Dragon.png" alt="">
+        <img class="overlay_weaknesses_icon" src="../icons/elements/Poison.png" alt="">
+        <img class="overlay_weaknesses_icon" src="../icons/elements/Water.png" alt="">
+      </div>
+      <div class="overlay_resistances">
+        <p>Resistances</p>
+        <img class="overlay_resistances_icon" src="../icons/elements/Fire.png" alt="">
+      </div>
+    </div>
+  </div>`;
+
+  overlayHTML.insertAdjacentHTML('beforeend', htmlOverlay)
+
+        
+    overlay.style.display = 'block';
+    }
+
+      // if (fClick) {
+      //   fClick = false
+      //   document.addEventListener('click', function (event) {
+      //       var clickedSection = event.target.closest('.test-section')
+      //       if (clickedSection) {
+      //         var motherdivId = clickedSection.id;
+      //         console.log(motherdivId)
+      //       } 
+      //     })
+      // }
+
+}
+
+   
+   
+   function off(event) {   
+       if (event.target == overlay) {
+        resetOverlay()
+           overlay.style.display = 'none';
+       }    
+   }
+
+   function resetOverlay(){
+    document.getElementById('overlay').innerHTML = ``
+  }
+   
+  document.addEventListener("click", on)
+  document.addEventListener("click", off);
+
+}) 
+}
+
