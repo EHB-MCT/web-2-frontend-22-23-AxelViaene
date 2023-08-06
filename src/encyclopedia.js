@@ -47,7 +47,7 @@ monsterList.forEach(function(monster) {
 let htmldata = 
           `<div id="${monster}" class="monster m${monster} test-section">
           <div class="monsterInternal">
-            <img id="img${monster}" class="monsterIcon encyclick" src="../icons/monsters/Kirin.png" alt="">
+            <img id="img${monster}" class="monsterIcon encyclick" src="../icons/unknown.png" alt="">
             <p id="name${monster}" class="monsterName encyclick"> -</p>
           </div>
           </div>`;
@@ -92,7 +92,6 @@ document.addEventListener('click', function (event) {
     var clickedSection = event.target.closest('.test-section')
     if (clickedSection) {
       motherdivId = clickedSection.id;
-      console.log(motherdivId)
     } 
   })
 }
@@ -102,135 +101,59 @@ function on(event) {
   {
     fetch(`https://mhw-db.com/monsters/${motherdivId}`).then(response =>
        response.json()).then(apidata => {
-        console.log(motherdivId)
-        console.log(apidata)
 
-        
+        const zoneCount = Math.min(Object.keys(apidata.locations).length, 5);
+        const resisCount = Object.keys(apidata.resistances).length
+        const weakCount = Object.keys(apidata.weaknesses).length
 
-        var htmlOverlay = `<div id="monster_page">
+        if(allMonsters.includes(motherdivId.toString())){
+          var htmlOverlay = `<div id="monster_page">
         <div class="overlay_left">
-          <p class="overlay_monster_species">Flying Wyvern</p>
+          <p class="overlay_monster_species">${apidata.species}</p>
           <p class="overlay_monster_name">${apidata.name}</p>
           <img class="overlay_img" src="../icons/monsters/${apidata.name}.png" alt="">
         </div>
         <div class="overlay_right">
-          <p class="overlay_known_regions">Known Regions</p>
-          <p class="overlay_regions">Ancient Forest</p>
-          <p class="overlay_regions">Ancient Forest</p>
-          <p class="overlay_regions">Ancient Forest</p>
-          <p class="overlay_regions">Ancient Forest</p>
-          <p class="overlay_regions">Ancient Forest</p>
-          <p class="overlay_characteristics">Characteristics</p>
-          <p class="overlay_description">A nefarious flying wyvern that travels the New World in search of prey. It
-            scatters explosive scales over a wide area to prey on whatever gets caught in the blast.</p>
+          <p class="overlay_known_regions">Known Regions</p>`
+
+          for (let i = 0; i < zoneCount; i++) {
+            htmlOverlay += `<p class="overlay_regions">${apidata.locations[i].name}</p>`;
+          }
+          
+          htmlOverlay += `<p class="overlay_characteristics">Characteristics</p>
+          <p class="overlay_description">${apidata.description}</p>
           <div class="overlay_weaknesses">
-            <p>Weaknesses</p>
-            <img class="overlay_weaknesses_icon" src="../icons/elements/Dragon.png" alt="">
-            <img class="overlay_weaknesses_icon" src="../icons/elements/Poison.png" alt="">
-            <img class="overlay_weaknesses_icon" src="../icons/elements/Water.png" alt="">
-          </div>
-          <div class="overlay_resistances">
-            <p>Resistances</p>
-            <img class="overlay_resistances_icon" src="../icons/elements/Fire.png" alt="">
-          </div>
-        </div>
-      </div>`;
-    
-      overlayHTML.insertAdjacentHTML('beforeend', htmlOverlay)
-    
+            <p>Weaknesses</p>`
+
+            if (resisCount >= 1) {
+              for (let i = 0; i < resisCount; i++) {
+                            htmlOverlay += `<img class="overlay_weaknesses_icon" src="../icons/elements/${apidata.resistances[i].element}.png">`
+                          }
+            } else {
+              htmlOverlay += `<p> None </p>`
+            }
             
-      overlay.style.display = 'block';
-
-
-       })
-
-  // uniqueMonsters.forEach(function(monster) {
-  //     fetch(`https://mhw-db.com/monsters/${monster}`).then(response =>
-  //     response.json()).then(apidata => {
-        
-       
-
-  //       //apidata WHERE apidata.id = motherdivId
-  //       var monsterArray = Object.values(apidata)
-
-  //       var clickedMotherId = typeof motherdivId === 'string' ? parseInt(motherdivId) : motherdivId
-
-  //       // var clickedMonster = apidata[clickedMonsterId]
-  //       var compareIds = monsterArray.find(({id}) => id === clickedMotherId)
-  //       console.log(monsterArray)
-
-  //       //WORKS FROM HERE ON
-  //       //log to check if the clicked monster is in the users collection
-  //       // console.log("Is motherdivId in allMonsters?", allMonsters.includes(motherdivId.toString()))
-
-  //       // console.log("apidata:", apidata)
-
-        
-  //       const monsters = [];
-  //       for (let i = 0; i < apidata.length; i += 2) {
-  //         const monsterId = apidata[i];
-  //         const monsterProps = apidata[i + 1];
-  //         console.log(monsterId)
-  //       const monsterObj = {
-  //         id: monsterId,
-  //         type: monsterProps[0],
-  //         species: monsterProps[1],
-  //         name: monsterProps[3],
-  //         description: monsterProps[4],
-  //         zones: monsterProps[6],
-  //         resistances: monsterProps[7],
-  //         weaknesses: monsterProps[8]
-  //       }
-  //       monsters.push(monsterObj)
-  //     }
-      
-      
-
-  //       // console.log("monsterArray:", monsterArray)
-  //       var clickedMonster = monsterArray.find(monster => monster.id === motherdivId)
-  //       // console.log("ClickedMonster",clickedMonster)
-
-  //       if(clickedMonster) {
-  //         var clickedMonsterName = clickedMonster.name
-  //         console.log("Clicked Monster Name:", clickedMonsterName)
-  //       } else {
-  //         console.log("Monster not found for MotherDivId", motherdivId)
-  //       }
-        
-
-  //       // var filteredMonster2 = {}
-  //       // for (var key in apidata) {
-  //       //   if (apidata[key] && apidata[key].id === motherdivId) {
-  //       //     filteredMonster2[key] = apidata[key]
-  //       //   }
-  //       // }
-        
-  //       // console.log(JSON.stringify(filteredMonster2, null, 2))
-  //       // console.log(filteredMonster2)
-
-  //       // var filteredMonster = apidata.filter(monster => monster.id === motherdivId)
-  //       // console.log(filteredMonster)
-
-
-        
-  //     })
-  //   console.log("test2")
-  // })
-  
-  
+          htmlOverlay += `</div>
+          <div class="overlay_resistances">
+            <p>Resistances</p>`
+            
+            if (weakCount >= 1) {
+              for (let i = 0; i < weakCount; i++) {
+                if (apidata.weaknesses[i].stars === 3)
+                htmlOverlay += `<img class="overlay_resistances_icon" src="../icons/elements/${apidata.weaknesses[i].element}.png">`
+              }
+            }
+            htmlOverlay += `</div>
+            </div>
+          </div>`;
+    
+          overlayHTML.insertAdjacentHTML('beforeend', htmlOverlay)
+          overlay.style.display = 'block';
+        } else {
+          console.log("Monster not discovered by user")
+        }    
+    })
   }
-
-    // if (fClick) {
-    //   fClick = false
-    //   document.addEventListener('click', function (event) {
-    //       var clickedSection = event.target.closest('.test-section')
-    //       if (clickedSection) {
-    //         var motherdivId = clickedSection.id;
-    //         console.log(motherdivId)
-    //       } 
-    //     })
-    // }
-
 }
 
  
@@ -245,7 +168,7 @@ function on(event) {
  function resetOverlay(){
   document.getElementById('overlay').innerHTML = ``
 }
- 
+
 document.addEventListener("click", on)
 document.addEventListener("click", off);
 
