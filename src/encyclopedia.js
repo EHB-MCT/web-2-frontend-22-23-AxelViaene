@@ -107,6 +107,7 @@ function on(event) {
         const weakCount = Object.keys(apidata.weaknesses).length
 
         if(allMonsters.includes(motherdivId.toString())){
+          
           var htmlOverlay = `<div id="monster_page">
         <div class="overlay_left">
           <p class="overlay_monster_species">${apidata.species}</p>

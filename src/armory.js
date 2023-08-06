@@ -1,11 +1,7 @@
-const { forEach } = require("lodash");
-
 window.onload = (event) => {
-console.log('armory.js is loaded')
 
 const userdata = sessionStorage.getItem('user');
 const user = JSON.parse(userdata);
-
 
     //Login authentication 
     try {
@@ -16,7 +12,7 @@ const user = JSON.parse(userdata);
 
     if(user) {
         document.getElementById('authname').innerText = `Welcome ${user.name}`
-        console.log(`Welcomeeee ${user.name}`)
+        console.log(`Welcome ${user.name}`)
         } else {
         window.location.href = '../html/login.html'
         }
@@ -28,28 +24,23 @@ const user = JSON.parse(userdata);
     const UserId = user.UserId;
     fetch('https://web2-course-project.onrender.com/user_greatswords').then(response => 
     response.json()).then(data => {
-        // console.log(data);
-
         var link = data.filter(function(result) {
             return result.UserId === UserId;
         });
-        console.log(link)
         
         //getting the Id's of the greatswords
         var greatswords = link.map(function(result) {
             return result.GreatswordId
         })
         var swordcounter = 1;
-        // console.log(greatswords)
         
         //displaying the amount of greatswords in user collection
-        greatswords.forEach(function(greatsword) {
-            fetch(`https://mhw-db.com/weapons/${greatsword}`).then(response =>
+        greatswords.forEach(function(i) {
+            fetch(`https://mhw-db.com/weapons/${i}`).then(response =>
             response.json()).then(apidata => {
-            //    console.log(apidata.id)
-                // if(apidata.elements[0].damage == undefined) {
-                //     elemdg = null
-                // }
+                console.log(apidata)
+
+                const elementCount = Object.keys(apidata.elements).length
 
                 let html = `<div class="greatsword gs${swordcounter}">
                 <div class="gsInternal">
@@ -68,12 +59,19 @@ const user = JSON.parse(userdata);
                     <div class="gsStatsRight">
                         <p class="gsAttack">Attack: ${apidata.attack.display}</p>
                         <div class="element">
-                            <p class="gsElementDamage"></p>
-                            <img class="gsElement" src="../icons/elements/water.png" alt="">
+                            <p class="gsElementDamage"></p>`
+
+                            if (elementCount === 1){
+                                html += `<p class="gsElementDamage">${apidata.elements[0].damage}</p>
+                                <img class="gsElement" src="../icons/elements/water.png" alt="">`
+                            } else {
+                                html += `<p class="gsElementDamage">0</p>`
+                            }
+
+                            html += `</div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>`;
+                    </div>`;
 
             //inserting html
             var gsDiv = document.createElement('div')
@@ -86,16 +84,15 @@ const user = JSON.parse(userdata);
             //remove the clicked weapon out of Users_Greatswords
             var closeButton = gsDiv.getElementsByClassName(`btn${swordcounter}`)[0]
             closeButton.addEventListener('click', function() {
-                return function () {
-                     var confirmation = confirm('Are you sure you want to remove this weapon from your collection?')
+                    var confirmation = confirm('Are you sure you want to remove this weapon from your collection?')
                     if(confirmation) {
-                    console.log(link)
-        
+                    console.log("link")
+
                     // fetch('https://web2-course-project.onrender.com/delete_user_greatsword?usergreatswordid=')
+                    } else {
+                        console.log("link22")
                     }
-                    console.log(link[1])
-                    }
-               
+                    
             });
             // move the variables and if statement around so it can reach parts outside of the forEach funtion
             swordcounter++;
