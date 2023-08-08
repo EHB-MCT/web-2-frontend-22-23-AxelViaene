@@ -174,5 +174,14 @@ document.addEventListener("click", on)
 document.addEventListener("click", off);
 
 }) 
+
+function logout() {
+  sessionStorage.removeItem('user')
+  window.location.assign("../html/login.html")
+}
+
+const logoutButton = document.getElementById('logoutButton')
+logoutButton.addEventListener('click', logout)
+
 }
 
