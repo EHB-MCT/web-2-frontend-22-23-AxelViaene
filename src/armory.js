@@ -1,5 +1,3 @@
-const { delay } = require("lodash");
-
 window.onload = (event) => {
 
 const userdata = sessionStorage.getItem('user');
@@ -95,8 +93,7 @@ const mainElement = document.getElementById('main')
                                     setTimeout(function() {
                                         location.reload();
                                     }, 2000);
-                                    console.log('delay')
-                                    
+                                                                     
                                     } else {
                                         console.log("NO DELETE ONLY CLICK")
                                     }
@@ -141,8 +138,28 @@ const mainElement = document.getElementById('main')
                                         }
                                         console.log("Available ID:", availableId)
                                         console.log(currentGSs)
+                                         let newGreatsword = {}
+                                         newGreatsword.UserId = UserId
+                                         newGreatsword.GreatswordId = 1
+                                         newGreatsword.UserGreatswordId = availableId
+                                        postWeapon("https://web2-course-project.onrender.com/save_user_greatsword", "POST", newGreatsword).then(data => {
+                                            console.log(data)
+                                        })
+                                        setTimeout(function() {
+                                            location.reload();
+                                        }, 2000);
                                     })
-                               
+                                    async function postWeapon(url, method, data) {
+                                        let resp = await fetch(url, {
+                                            method: method,
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify(data)
+                                        })
+                                        return await resp.json()
+                                        
+                                    }
                                 })
                                
                             })
