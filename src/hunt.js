@@ -68,8 +68,6 @@ window.onload = (event) => {
                         weaponsData.forEach((apidata, index) => {
 
                         const elementCount = Object.keys(apidata.elements).length
-                        console.log(apidata)
-                        console.log(index)
 
                         let html = `<div class="slide${index+1}">
                             <div class="greatsword gs1">
@@ -95,8 +93,8 @@ window.onload = (event) => {
                                             }
                     
                                             html += `</div>
-                                                                </div>
-                                                            </div>`;
+                                                    </div>
+                                                </div>`;
                         
                         const slide = document.createElement('div')
                         slide.classList.add('slide')
@@ -114,7 +112,6 @@ window.onload = (event) => {
 
     //carousel
     function showWeapon(index) {
-        console.log("ShowWeapon: currentIndex = " + index)
         slides.forEach((slide, i) => {
             slide.style.display = i === index ? 'block' : 'none'
         })
@@ -126,7 +123,6 @@ window.onload = (event) => {
         if (currentIndex >= slides.length) {
             currentIndex = 0
         }
-        console.log("nextWeapon: currentIndex = " + currentIndex)
         showWeapon(currentIndex);
     }
 
@@ -135,7 +131,6 @@ window.onload = (event) => {
         if (currentIndex < 0) {
             currentIndex = slides.length - 1;
         }
-        console.log("previousWeapon: currentIndex = " + currentIndex);
         showWeapon(currentIndex);
     }
 
@@ -148,27 +143,13 @@ window.onload = (event) => {
             var selectedRegion = event.target.textContent;
             regionButton.textContent = selectedRegion;
             dropdown.style.display = 'none';
+            console.log(selectedRegion)
         }
     }
 
     function toggleDropdownOff(event) {
         if (event.target !== regionButton) {
             dropdown.style.display = 'none';
-        }
-    }
-
-    //hunt overlay
-    function huntResultOverlay(event) {
-        if (event.target === openOverlay) {
-            overlay.style.display = 'block';
-            console.log("open overlay")
-        }
-    }
-
-    function huntResultClose(event) {
-        if (event.target == overlay && !nonOverlay.contains(event.target)) {
-            overlay.style.display = 'none';
-            console.log("close overlay")
         }
     }
 
@@ -188,9 +169,24 @@ window.onload = (event) => {
             });
 
             monsterRankSelected = index;
-
+            console.log(monsterRankSelected+1)
         });
     });
+
+    //hunt overlay
+    function huntResultOverlay(event) {
+        if (event.target === openOverlay) {
+            overlay.style.display = 'block';
+            console.log("open overlay")
+        }
+    }
+
+    function huntResultClose(event) {
+        if (event.target == overlay && !nonOverlay.contains(event.target)) {
+            overlay.style.display = 'none';
+            console.log("close overlay")
+        }
+    }
 
     function logout() {
         sessionStorage.removeItem('user')
