@@ -17,21 +17,21 @@ main {
 
 /* ----------LEFT-SIDE--------- */
 
-.carousel {
+#carousel {
     grid-row: 2/7;
     grid-column: 4/6;
     overflow: hidden;
     position: relative;
 }
 
-.carousel .slide {
+#carousel .slide {
     width: 100%;
     height: 100%;
     position: absolute;
     display: none;
 }
 
-.carousel .activeWeapon {
+#carousel .activeWeapon {
     display: block;
 }
 
