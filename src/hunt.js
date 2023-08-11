@@ -2,7 +2,11 @@ window.onload = (event) => {
 
     const userdata = sessionStorage.getItem('user');
     const user = JSON.parse(userdata);
-    const mainElement = document.getElementById('main');
+    let weaponsData = []
+    let selectedRegion = ''
+    var monsterList = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39,
+        40, 41, 42, 43, 44, 45, 48, 49, 50, 53]
+    const monstersArray = [];
 
     //Login authentication
     try {
@@ -64,8 +68,9 @@ window.onload = (event) => {
                     const id = result.GreatswordId
                     return fetch(`https://mhw-db.com/weapons/${id}`).then(
                         response => response.json())
-                        })).then(weaponsData => {
-                        weaponsData.forEach((apidata, index) => {
+                        })).then(data => {
+                        weaponsData = data
+                        data.forEach((apidata, index) => {
 
                         const elementCount = Object.keys(apidata.elements).length
 
@@ -140,7 +145,7 @@ window.onload = (event) => {
             dropdown.style.display = 'block';
         }
         if (event.target.classList.contains('regionOption')) {
-            var selectedRegion = event.target.textContent;
+            selectedRegion = event.target.textContent;
             regionButton.textContent = selectedRegion;
             dropdown.style.display = 'none';
             console.log(selectedRegion)
@@ -168,8 +173,8 @@ window.onload = (event) => {
                 }
             });
 
-            monsterRankSelected = index;
-            console.log(monsterRankSelected+1)
+            monsterRankSelected = index +1;
+            console.log(monsterRankSelected)
         });
     });
 
@@ -177,14 +182,66 @@ window.onload = (event) => {
     function huntResultOverlay(event) {
         if (event.target === openOverlay) {
             overlay.style.display = 'block';
-            console.log("open overlay")
+
+            //gather chosen weapon, monsterrank and region
+            console.log(`Rank: ${monsterRankSelected}`)
+            console.log(`Region: ${selectedRegion}`)
+            const currentWeaponApidata = weaponsData[currentIndex]
+            console.log('Showing weapon at index:', currentWeaponApidata.name)
+
+            //Based on region, get a monster from mhwAPI
+            async function fetchMonsters() {
+            
+                try {
+                    var monstersArray = []; // Initialize the array
+
+                    const fetchPromises = monsterList.map(async function(monster) {
+                        const response = await fetch(`https://mhw-db.com/monsters/${monster}`)
+                         const allMonsterData = await response.json()
+                        monstersArray.push(allMonsterData)
+                    })
+
+                    await Promise.all(fetchPromises)
+            
+                    // Use reduce to accumulate filtered monsters by location
+                    const filteredByLocation = monstersArray.filter(monsterData => {
+                        return monsterData.locations.some(location => location.name === selectedRegion)
+                        })
+            
+                    console.log('Monsters in selected region:', filteredByLocation)
+
+                    //get random monster from filtered location list
+                    if (filteredByLocation.length > 0) {
+                        const randomIndex = Math.floor(Math.random()* filteredByLocation.length)
+                        const randomMonster = filteredByLocation[randomIndex]
+                        console.log('Random Monster:', randomMonster.name)
+                    } else {
+                        console.log('No monster found in selected region.')
+                    }
+
+                } catch (error) {
+                    console.error('Error fetching monster data:', error)
+                }
+            
+            }
+            fetchMonsters()
+            
+            //calculate HP based on monsterrank
+
+            //calculate hunt result based on weapon (damage, element & monster resistances)
+
+            //determine success/failure
+
+                //success = add monster to encyclopedia if it isn't already in there
+                    //if high enough rank = level up weapon
+                //failure = decrease weapon rank? 
+
         }
     }
 
     function huntResultClose(event) {
         if (event.target == overlay && !nonOverlay.contains(event.target)) {
             overlay.style.display = 'none';
-            console.log("close overlay")
         }
     }
 
