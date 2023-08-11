@@ -35,9 +35,7 @@ window.onload = (event) => {
 
             link.sort((a, b) => a.GreatswordId - b.GreatswordId)
 
-            const weaponCount = Object
-                .keys(link)
-                .length
+            const weaponCount = Object.keys(link).length
 
             // fetching MHW apidata based on weapons stored in the user's armory and
             // inserting it in the HTML
@@ -50,11 +48,9 @@ window.onload = (event) => {
                 }))
                 .then(weaponsData => {
                     weaponsData.forEach((apidata, index) => {
-
-                        const elementCount = Object
-                            .keys(apidata.elements)
-                            .length
+                        const elementCount = Object.keys(apidata.elements).length
                         const UGSWId = link[index].UserGreatswordId
+                        console.log(apidata)
 
                         let html = `<div class="gsInternal">
                                     <div class="gsTop">
@@ -76,7 +72,7 @@ window.onload = (event) => {
 
                         if (elementCount === 1) {
                             html += `<p class="gsElementDamage">${apidata.elements[0].damage}</p>
-                                    <img class="gsElement" src="../icons/elements/water.png" alt="">`
+                                    <img class="gsElement" src="../icons/elements/${apidata.elements[0].type}.png" alt="">`
                         } else {
                             html += `<p class="gsElementDamage">0</p>`
                         }
@@ -142,11 +138,11 @@ window.onload = (event) => {
                             .then(newWeapon => {
                                 fetch('https://web2-course-project.onrender.com/user_greatswords')
                                     .then(
-                                        response => response.json()
-                                    )
+                                        response => response.json())
                                     .then(currentGSs => {
                                         let availableId = null
 
+                                        //check which id is available
                                         for (let i = 1; i <= currentGSs.length + 1; i++) {
                                             const idTaken = currentGSs.some(obj => obj.UserGreatswordId === i)
 
