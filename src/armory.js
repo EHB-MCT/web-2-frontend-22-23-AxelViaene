@@ -62,22 +62,23 @@ window.onload = (event) => {
                                     </div>
                                     <img class="gsIcon" src="../icons/greatswords/Greatsword${apidata.rarity}.png" alt="">
                                     <div class="gsStatsLeft">
-                                        <p>Rarity:${apidata.rarity}</p>
+                                        <p>Rarity:</p>
                                         <p>Element:</p>
                                     </div>
                                     <div class="gsStatsRight">
-                                        <p class="gsAttack">Attack: ${apidata.attack.display}</p>
-                                        <div class="element">
-                                            <p class="gsElementDamage"></p>`
+                        
+                                       <p class="gsAttack">${apidata.rarity}</p>
+                                          `
 
                         if (elementCount === 1) {
-                            html += `<p class="gsElementDamage">${apidata.elements[0].damage}</p>
+                            html += `
                                     <img class="gsElement" src="../icons/elements/${apidata.elements[0].type}.png" alt="">`
                         } else {
-                            html += `<p class="gsElementDamage">0</p>`
+                            html += `<p class="noElement">None</p>`
                         }
 
-                        html += `</div>
+                        html += `
+                        
                                             </div>
                                         </div>`;
 

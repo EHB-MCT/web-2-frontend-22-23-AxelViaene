@@ -16,6 +16,10 @@ main {
     border-radius: 5px;
 }
 
+.gsInternal {
+    width: 21vw;
+}
+
 .gsTop {
     border-bottom: 2px solid #EFEFEF;
     margin-bottom: 1.4vw;
@@ -61,24 +65,27 @@ main {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 2vw;
     padding-bottom: 1vw;
 }
 
 .gsStatsLeft {
-    font-size: 0.8vw;
+    font-size: 1vw;
     float: left;
-    width: 7vh;
     margin-left: 0.5vw;
 }
 
 .gsStatsRight {
-    overflow: hidden;
+    float: right;
+    overflow: visible;
+    font-size: 0.8vw;
 }
 
 .gsAttack {
-    font-size: 0.8vw;
-    float: right;
-    margin-right: 0.5vw;
+    font-size: 1vw;
+    float: inline-end;
+    text-align: center;
+    margin-right: 1vw;
 }
 
 .element {
@@ -89,16 +96,16 @@ main {
     margin-right: 0.5vw;
 }
 
-.gsElementDamage {
-    margin: 0;
-    margin-right: 2px;
+.noElement {
+    font-size: 1vw;
+    margin-right: 0.5vw;
 }
 
 .gsElement {
-    max-width: 1.9vw;
-    float: inline-end;
+    max-width: 1.8vw;
+    float: right;
     display: block;
-    margin: 0;
+    margin-right: 0.5vw;
 }
 
 .newSword {
@@ -162,5 +169,3 @@ main {
     grid-column: 11/13;
     grid-row: 3/4;
 }
-
-/* ----OVERLAY---- */

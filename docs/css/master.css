@@ -53,6 +53,10 @@ header {
     margin-bottom: 30px;
 }
 
+#navigation li.active a {
+    font-weight: bold;
+}
+
 #PukeiDex {
     font-family: 'PT Sans', sans-serif;
     font-weight: bold;
@@ -70,5 +74,20 @@ header {
 
 #PukeiDex_Icon:hover,
 #PukeiDex:hover {
+    transform: scale(1.1);
+}
+
+#authname {
+    margin-left: 8vw;
+}
+
+#logoutButton {
+    font-size: 1vw;
+    margin-left: 2vw;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+#logoutButton:hover {
     transform: scale(1.1);
 }
