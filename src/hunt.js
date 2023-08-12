@@ -95,22 +95,21 @@ window.onload = (event) => {
                                     </div>
                                     <img class="gsIcon" src="../icons/greatswords/Greatsword${apidata.rarity}.png" alt="">
                                     <div class="gsStatsLeft">
-                                        <p>Rarity:${apidata.rarity}</p>
+                                        <p>Rarity:</p>
                                         <p>Element:</p>
                                     </div>
                                     <div class="gsStatsRight">
-                                        <p class="gsAttack">Attack: ${apidata.attack.display}</p>
-                                        <div class="element">
+                                        <p class="gsAttack">${apidata.rarity}</p>
+                                        
                                             <p class="gsElementDamage"></p>`
 
                                             if (elementCount === 1) {
-                                                html += `<p class="gsElementDamage">${apidata.elements[0].damage}</p>
-                                                        <img class="gsElement" src="../icons/elements/${apidata.elements[0].type}.png" alt="">`
+                                                html += `<img class="gsElement" src="../icons/elements/${apidata.elements[0].type}.png" alt="">`
                                             } else {
-                                                html += `<p class="gsElementDamage">0</p>`
+                                                html += `<p class="noElement">None</p>`
                                             }
                     
-                                            html += `</div>
+                                            html += `
                                                     </div>
                                                 </div>`;
                         
@@ -503,6 +502,7 @@ window.onload = (event) => {
         console.log('hi')
         let html = ` <p class="huntResult">SUCCES</p>
         <img class="overlayMonster" src="../icons/monsters/${randomMonster.name}.png" alt="">
+        <p class="huntMessage">You successfully hunted a:</p>
         <p class="rankMonster">${randomMonster.name}</p>`
 
         huntOverlay.innerHTML = html
@@ -514,6 +514,7 @@ window.onload = (event) => {
 
         let html = `<p class="huntResult">FAIL</p>
         <img class="overlayMonster" src="../icons/monsters/${randomMonster.name}.png" alt="">
+        <p class="huntMessage">You failed to hunted a:</p>
         <p class="rankMonster">?</p>`
 
         huntOverlay.innerHTML = html
