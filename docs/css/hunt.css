@@ -4,7 +4,7 @@
 /* ----------GRID--------- */
 main {
     grid-template-rows: 6vw 4vw 0.5vw repeat(3, 4vw) 12vw;
-    font-family: europa-regular;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .motivation {
@@ -43,6 +43,10 @@ main {
     border-radius: 5px;
 }
 
+.gsInternal {
+    width: 21vw;
+}
+
 .gsTop {
     border-bottom: 2px solid #EFEFEF;
     margin-bottom: 1.4vw;
@@ -63,28 +67,31 @@ main {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0vw;
     padding-bottom: 1vw;
 }
 
 .gsStatsLeft {
     font-size: 1vw;
     float: left;
-    width: 7vh;
     margin-left: 0.5vw;
 }
 
 .gsStatsRight {
-    overflow: hidden;
+    float: right;
+    overflow: visible;
+    font-size: 0.8vw;
 }
 
 .gsAttack {
     font-size: 1vw;
-    float: right;
-    margin-right: 0.5vw;
+    float: inline-end;
+    text-align: center;
+    margin-right: 1vw;
 }
 
 .element {
-    font-size: 1vw;
+    font-size: 0.8vw;
     display: flex;
     align-items: left;
     float: right;
@@ -96,11 +103,16 @@ main {
     margin-right: 2px;
 }
 
+.noElement {
+    font-size: 1vw;
+    margin-right: 0.5vw;
+}
+
 .gsElement {
-    max-width: 1.2vw;
+    max-width: 1.8vw;
     float: right;
     display: block;
-    margin: 0;
+    margin-right: 0.5vw;
 }
 
 .leftCarousel {
@@ -248,7 +260,7 @@ main {
 #huntOverlay {
     background-color: #EFEFEF;
     margin: auto;
-    height: 35vw;
+    height: 40vw;
     max-width: 50%;
     top: 50%;
     transform: translateY(-50%);
@@ -262,8 +274,9 @@ main {
 }
 
 .rankMonster {
+    font-family: 'PT Sans', sans-serif;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 1vw;
     font-size: 24px;
     font-weight: bold;
     color: #333;
@@ -271,14 +284,20 @@ main {
 
 .overlayMonster {
     max-width: 20vw;
-    margin: 15px 0;
     display: block;
 }
 
 .huntResult {
+    font-family: 'PT Sans', sans-serif;
     text-align: center;
-    margin-top: 15px;
-    font-size: 32px;
+    margin-top: 2vw;
+    font-size: 3vw;
     font-weight: bold;
     color: #333;
+}
+
+.huntMessage {
+    font-weight: 100;
+    margin-top: 2vw;
+    margin-bottom: 0;
 }
