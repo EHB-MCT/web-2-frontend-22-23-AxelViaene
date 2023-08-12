@@ -501,9 +501,9 @@ window.onload = (event) => {
     function overlayHuntWin() {
         const huntOverlay = document.getElementById('huntOverlay')
         console.log('hi')
-        let html = `<p class="rankMonster">${randomMonster.name}</p>
+        let html = ` <p class="huntResult">SUCCES</p>
         <img class="overlayMonster" src="../icons/monsters/${randomMonster.name}.png" alt="">
-        <p class="huntResult">SUCCES</p>`
+        <p class="rankMonster">${randomMonster.name}</p>`
 
         huntOverlay.innerHTML = html
         overlay.appendChild(huntOverlay)
@@ -512,9 +512,9 @@ window.onload = (event) => {
     function overlayHuntFail() {
         const huntOverlay = document.getElementById('huntOverlay')
 
-        let html = `<p class="rankMonster">?</p>
+        let html = `<p class="huntResult">FAIL</p>
         <img class="overlayMonster" src="../icons/monsters/${randomMonster.name}.png" alt="">
-        <p class="huntResult">FAIL</p>`
+        <p class="rankMonster">?</p>`
 
         huntOverlay.innerHTML = html
         overlay.appendChild(huntOverlay)
