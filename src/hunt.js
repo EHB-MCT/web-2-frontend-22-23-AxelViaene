@@ -187,6 +187,7 @@ window.onload = (event) => {
 
             //gather chosen weapon, monsterrank and region
             const currentWeaponApidata = weaponsData[currentIndex]
+            const currentWeaponId = currentWeaponApidata.id
             console.log('------------------')
 
             //Based on region, get a monster from mhwAPI
@@ -267,35 +268,35 @@ window.onload = (event) => {
                 if (battleResult > succes) {
                     console.log('succes')
                     //success = save hunt
-                    // fetch('https://web2-course-project.onrender.com/hunts').then(response => response.json())
-                    // .then(currentHunts => {
-                    //     let availableHuntId = null
+                    fetch('https://web2-course-project.onrender.com/hunts').then(response => response.json())
+                    .then(currentHunts => {
+                        let availableHuntId = null
 
-                    //     for (let i = 1; i<= currentHunts.length + 1; i++) {
-                    //         const idTaken = currentHunts.some(obj => obj.HuntId === i)
+                        for (let i = 1; i<= currentHunts.length + 1; i++) {
+                            const idTaken = currentHunts.some(obj => obj.HuntId === i)
 
-                    //         if (!idTaken) {
-                    //             availableHuntId = i
-                    //             break
-                    //         }
-                    //     }
+                            if (!idTaken) {
+                                availableHuntId = i
+                                break
+                            }
+                        }
 
-                    //     let newHunt = {}
-                    //     newHunt.UserId = UserId
-                    //     newHunt.GreatswordId = currentWeaponApidata.id
-                    //     newHunt.MonsterId = randomMonster.id
-                    //     newHunt.location = selectedRegion
-                    //     newHunt.HuntId = availableHuntId
+                        let newHunt = {}
+                        newHunt.UserId = UserId
+                        newHunt.GreatswordId = currentWeaponApidata.id
+                        newHunt.MonsterId = randomMonster.id
+                        newHunt.location = selectedRegion
+                        newHunt.HuntId = availableHuntId
 
-                    //     postHunt(
-                    //         "https://web2-course-project.onrender.com/save_hunt",
-                    //         "POST",
-                    //         newHunt
-                    //     ).then(data => {
-                    //         console.log(data)
-                    //     })
+                        postHunt(
+                            "https://web2-course-project.onrender.com/save_hunt",
+                            "POST",
+                            newHunt
+                        ).then(data => {
+                            console.log(data)
+                        })
 
-                    // })
+                    })
 
                     //add upgraded weapon if possible
                     const craftingData = currentWeaponApidata.crafting
@@ -315,40 +316,72 @@ window.onload = (event) => {
                             }
                         }
 
-                        let upgradeWeapon = {}
-                        upgradeWeapon.UserId = UserId
-                        upgradeWeapon.GreatswordId = randomBranch
-                        upgradeWeapon.UserGreatswordId = availableUGSId
+                        let newUser_Greatsword = {}
+                        newUser_Greatsword.UserId = UserId
+                        newUser_Greatsword.GreatswordId = randomBranch
+                        newUser_Greatsword.UserGreatswordId = availableUGSId
+                        console.log(newUser_Greatsword)
 
-                        //post user_greatsword
-                        // postUpgrade(
-                        //     "https://web2-course-project.onrender.com/save_user_greatsword",
-                        //     "POST",
-                        //     upgradeWeapon
-                        // ).then(data => {
-                        //     console.log(data)
-                        // })
+                        // post upgrade user_greatsword
+                        postUpgrade(
+                            "https://web2-course-project.onrender.com/save_user_greatsword",
+                            "POST",
+                            newUser_Greatsword
+                        ).then(data => {
+                            console.log(data)
+                        })
 
-                        //remove 'old' weapon
-                        //trying to get UserGreatswordId of the weapon that was used
-                        fetch(
-                            `https://web2-course-project.onrender.com/delete_user_greatsword?usergreatswordid=${curr}`,
-                        
-                        )
+                        // remove 'old' weapon
+                        // fetch(
+                        //     `https://web2-course-project.onrender.com/delete_UGS_by_id?UserId=${UserId}&GreatswordId=${currentWeaponId}`,
+                        //     {method: 'DELETE'}
+                        // )
 
 
                     } else {
                         console.log('No branches available.')
                     }
                     
-                   
-
-
-                    //remove current weapon
-                    
 
                 } else {
+                    //failed hunt
                     console.log('fail')
+                    const crafting = currentWeaponApidata.crafting
+                    //check if there is a previous version of the weapon to rollback to
+                    if (crafting.previous) {
+                        const rollback = crafting.previous
+                        console.log('Previous weapon ID:', rollback)
+
+                        //check available id
+                        let availableUGSId = null
+                        for (let i = 1; i <= link.length +1; i++) {
+                            const UGSIdTaken = link.some(obj => obj.UserGreatswordId === i)
+
+                            if (!UGSIdTaken) {
+                                availableUGSId = i
+                                break
+                            }
+                        }
+
+                        let newUser_Greatsword = {}
+                        newUser_Greatsword.UserId = UserId
+                        newUser_Greatsword.GreatswordId = rollback
+                        newUser_Greatsword.UserGreatswordId = availableUGSId
+                        console.log(newUser_Greatsword)
+
+                        //post downgrade user_greatsword
+                        postDowngrade(
+                            "https://web2-course-project.onrender.com/save_user_greatsword",
+                            "POST",
+                            newUser_Greatsword
+                        )
+
+                        // remove 'old' weapon
+                        fetch(
+                            `https://web2-course-project.onrender.com/delete_UGS_by_id?UserId=${UserId}&GreatswordId=${currentWeaponId}`,
+                            {method: 'DELETE'}
+                        )
+                    }
                 }
                 
                 async function postHunt(url, method, data) {
@@ -363,6 +396,18 @@ window.onload = (event) => {
                 }
 
                 async function postUpgrade(url, method, data) {
+                        let response = await fetch(url, {
+                            method: method,
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        })
+
+                        return await response.json()                    
+                }
+
+                async function postDowngrade(url, method, data) {
                     let resp = await fetch(url, {
                         method: method,
                         headers: {
