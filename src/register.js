@@ -1,7 +1,7 @@
 window.onload = (event) => {
   
 
-    document.getElementById('form').addEventListener("submit", event => {
+                document.getElementById('form').addEventListener("submit", event => {
                 event.preventDefault()
                 let user = {}
                 user.name = document.getElementById('registerUsername').value;
@@ -17,7 +17,7 @@ window.onload = (event) => {
                     })
                 } else {
                     alert("Passwords do not match.")
-                }      
+                }   
             })
         
         async function getData(url, method, data){

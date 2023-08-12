@@ -10,6 +10,8 @@ window.onload = (event) => {
     let randomMonster = ''
     let elementModifier = 0
     const rankIcons = document.querySelectorAll('.rankIcon');
+    const mainElement = document.getElementById('main')
+    const overlay = document.getElementById('overlay')
     var monsterRankSelected = -1;
     const regionStars = {
         'Ancient Forest': 1,
@@ -41,7 +43,6 @@ window.onload = (event) => {
     var dropdown = document.getElementById('regionDropdown');
     var regionButton = document.getElementById('regionButton');
     var regions = document.getElementsByClassName('regionOption');
-    var overlay = document.getElementById("overlay");
     var openOverlay = document.getElementById("huntButton");
     var nonOverlay = document.getElementById("huntOverlay");
 
@@ -223,7 +224,7 @@ window.onload = (event) => {
                 }
             
             }
-            fetchMonsters().then(()=> {
+            fetchMonsters().then(async ()=> {
             //calculate difference in rank between monster and weapon
 
             // console.log(monsterRankSelected)
@@ -267,10 +268,12 @@ window.onload = (event) => {
             const succes = Math.random()*100
                 if (battleResult > succes) {
                     console.log('succes')
+                    overlayHuntWin()
                     //success = save hunt
-                    fetch('https://web2-course-project.onrender.com/hunts').then(response => response.json())
-                    .then(currentHunts => {
-                        let availableHuntId = null
+                    try {
+                        await fetch('https://web2-course-project.onrender.com/hunts').then(response => response.json())
+                        .then(async currentHunts => {
+                        let availableHuntId = 10000
 
                         for (let i = 1; i<= currentHunts.length + 1; i++) {
                             const idTaken = currentHunts.some(obj => obj.HuntId === i)
@@ -288,7 +291,7 @@ window.onload = (event) => {
                         newHunt.location = selectedRegion
                         newHunt.HuntId = availableHuntId
 
-                        postHunt(
+                        await postHunt(
                             "https://web2-course-project.onrender.com/save_hunt",
                             "POST",
                             newHunt
@@ -297,6 +300,10 @@ window.onload = (event) => {
                         })
 
                     })
+                    } catch (error) {
+                        console.error('Error during saving hunt', error)
+                    }
+                     
 
                     //add upgraded weapon if possible
                     const craftingData = currentWeaponApidata.crafting
@@ -304,6 +311,7 @@ window.onload = (event) => {
                         const randomBranchIndex = Math.floor(Math.random() * craftingData.branches.length)
                         const randomBranch = craftingData.branches[randomBranchIndex]
                         console.log('Random Branch:', randomBranch)
+
 
                          //check available id
                         let availableUGSId = null
@@ -323,20 +331,33 @@ window.onload = (event) => {
                         console.log(newUser_Greatsword)
 
                         // post upgrade user_greatsword
-                        postUpgrade(
+                        try {
+                            await postUpgrade(
                             "https://web2-course-project.onrender.com/save_user_greatsword",
                             "POST",
                             newUser_Greatsword
-                        ).then(data => {
-                            console.log(data)
-                        })
+                        )
 
-                        // remove 'old' weapon
-                        // fetch(
-                        //     `https://web2-course-project.onrender.com/delete_UGS_by_id?UserId=${UserId}&GreatswordId=${currentWeaponId}`,
-                        //     {method: 'DELETE'}
-                        // )
+                        const deleteResponse = await fetch(
+                            `https://web2-course-project.onrender.com/delete_UGS_by_id?UserId=${UserId}&GreatswordId=${currentWeaponId}`,
+                            {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }
+                        )
 
+                        if (deleteResponse.ok) {
+                            console.log("downgrade and removal succes")
+                        } else {
+                            console.log("Error during removal: HTTP status:", deleteResponse.status)
+                        }
+
+                        console.log('upgrade and removal complete')
+                        } catch (error) {
+                            console.error('error during upgrade and removal', error)
+                        }
 
                     } else {
                         console.log('No branches available.')
@@ -346,11 +367,14 @@ window.onload = (event) => {
                 } else {
                     //failed hunt
                     console.log('fail')
+                    overlayHuntFail()
                     const crafting = currentWeaponApidata.crafting
                     //check if there is a previous version of the weapon to rollback to
                     if (crafting.previous) {
                         const rollback = crafting.previous
                         console.log('Previous weapon ID:', rollback)
+
+                    
 
                         //check available id
                         let availableUGSId = null
@@ -364,64 +388,136 @@ window.onload = (event) => {
                         }
 
                         let newUser_Greatsword = {}
-                        newUser_Greatsword.UserId = UserId
                         newUser_Greatsword.GreatswordId = rollback
                         newUser_Greatsword.UserGreatswordId = availableUGSId
+                        newUser_Greatsword.UserId = UserId
                         console.log(newUser_Greatsword)
 
                         //post downgrade user_greatsword
-                        postDowngrade(
+                        try { 
+                            console.log('newUser_Greatsword', newUser_Greatsword)
+                            await postDowngrade(
                             "https://web2-course-project.onrender.com/save_user_greatsword",
                             "POST",
                             newUser_Greatsword
                         )
+                            // remove 'old' weapon
+                             const deleteResponse = await fetch(
+                                `https://web2-course-project.onrender.com/delete_UGS_by_id?UserId=${UserId}&GreatswordId=${currentWeaponId}`,
+                                {method: 'DELETE'}
+                            )
+                            if (deleteResponse.ok) {
+                                console.log("downgrade and removal succes")
+                            } else {
+                                console.log("Error during removal: HTTP status:", deleteResponse.status)
+                            }
+                            console.log("Downgrade and removal complete")
+                        } catch (error) {
+                            console.error('Error during downgrade and removal', error)
+                            console.error('Error response:', error.response)
+                            console.error('Response data:', error.data)
+                        }
 
-                        // remove 'old' weapon
-                        fetch(
-                            `https://web2-course-project.onrender.com/delete_UGS_by_id?UserId=${UserId}&GreatswordId=${currentWeaponId}`,
-                            {method: 'DELETE'}
-                        )
+                        
                     }
                 }
                 
-                async function postHunt(url, method, data) {
-                    let resp = await fetch(url, {
-                        method: method,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    return await resp.json()
-                }
-
-                async function postUpgrade(url, method, data) {
-                        let response = await fetch(url, {
-                            method: method,
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(data)
-                        })
-
-                        return await response.json()                    
-                }
-
-                async function postDowngrade(url, method, data) {
-                    let resp = await fetch(url, {
-                        method: method,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    return await resp.json()
-                }
+                
             })
             
            
 
         }
+    }
+
+    async function postHunt(url, method, data) {
+        try {
+          const resp = await fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+        if(!resp.ok) {
+            throw new Error(`Request failed with status: ${resp.status}`)
+        }
+        const responseData = await resp.text()
+        console.log('Response Data:', responseData)
+        return responseData
+        } catch (error) {
+            console.error('Error during API call', error)
+            throw error
+        }
+        
+    }
+
+    async function postUpgrade(url, method, data) {
+        try {
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+
+            if (!response.ok) {
+                throw new Error(`Request failed with status: ${response.status}`)
+            }
+
+          return response.text()
+        } catch (error) {
+            console.error('Error during upgrade API call', error)
+            throw error
+        }                   
+    }
+
+    async function postDowngrade(url, method, data) {
+        try {
+            const resp = await fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+        if (!resp.ok) {
+            throw new Error(`Request failed with status: ${resp.status}`)
+        }
+
+        const responseData = await resp.text()
+        console.log('Response Data:', responseData)
+        return responseData
+        return await resp.json()
+        } catch (error) {
+            console.error('Error during API call', error)
+            throw error
+        }   
+    }
+
+    function overlayHuntWin() {
+        const huntOverlay = document.getElementById('huntOverlay')
+        console.log('hi')
+        let html = `<p class="rankMonster">${randomMonster.name}</p>
+        <img class="overlayMonster" src="../icons/monsters/${randomMonster.name}.png" alt="">
+        <p class="huntResult">SUCCES</p>`
+
+        huntOverlay.innerHTML = html
+        overlay.appendChild(huntOverlay)
+    }
+
+    function overlayHuntFail() {
+        const huntOverlay = document.getElementById('huntOverlay')
+
+        let html = `<p class="rankMonster">?</p>
+        <img class="overlayMonster" src="../icons/monsters/${randomMonster.name}.png" alt="">
+        <p class="huntResult">FAIL</p>`
+
+        huntOverlay.innerHTML = html
+        overlay.appendChild(huntOverlay)
     }
 
     function huntResultClose(event) {
