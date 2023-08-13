@@ -1,7 +1,7 @@
 
 window.onload =() => {
 
-window.location.href = '../html/login.html'
+console.log('test')
 }
 
 
