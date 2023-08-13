@@ -1,7 +1,6 @@
 
 window.onload =() => {
-
-console.log('test')
+    window.location.href="https://axelviaene.github.io/docs/html/login.html"
 }
 
 
