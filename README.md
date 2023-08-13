@@ -2,7 +2,7 @@
 web-2-frontend-22-23-AxelViaene - August retake
 
 ## Introduction
-PuekeiDex is a Monster Hunter World- inspired minigame where you collect information about monsters as you hunt them. Users level up their weapons as they progress through the game and will be able to take on harder environments and discover more monsters.
+PukeiDex is a Monster Hunter World- inspired minigame where you collect information about monsters as you hunt them. Users level up their weapons as they progress through the game and will be able to take on harder environments and discover more monsters.
 
 ## Features
 - Register and login system.
