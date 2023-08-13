@@ -3,7 +3,7 @@
 /* ----------GRID--------- */
 main {
     grid-template-rows: 6vw repeat(7, 4vw) 12vw;
-    font-family: europa-regular;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .title {

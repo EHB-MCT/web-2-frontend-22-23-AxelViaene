@@ -162,7 +162,6 @@ window.onload = (event) => {
             dropdown.style.display = 'none';
 
             monsterRankSelected = regionStars[selectedRegion]
-
             rankIcons.forEach((icon, index) => {
                 if (index < monsterRankSelected) {
                     icon.src = '../icons/star-full.png'
@@ -182,7 +181,8 @@ window.onload = (event) => {
 
     //hunt overlay
     function huntResultOverlay(event) {
-        if (event.target === openOverlay) {
+        
+        if (event.target === openOverlay && monsterRankSelected !== -1) {
             overlay.style.display = 'block';
 
             //gather chosen weapon, monsterrank and region
@@ -423,9 +423,8 @@ window.onload = (event) => {
                 
                 
             })
-            
-           
-
+        } else {
+            const pickRegion = confirm('You must choose a region.')
         }
     }
 
