@@ -212,12 +212,12 @@ main {
 
 /* Hunt button */
 
-.huntDiv {
+#huntDiv {
     background-color: white;
     grid-row: 6/7;
     grid-column: 7/9;
     position: relative;
-
+    display: none;
 }
 
 .centerHunt {

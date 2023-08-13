@@ -162,6 +162,11 @@ window.onload = (event) => {
             dropdown.style.display = 'none';
 
             monsterRankSelected = regionStars[selectedRegion]
+            console.log(monsterRankSelected)
+            if (monsterRankSelected !== -1){
+                const huntButton = document.getElementById('huntDiv')
+                huntButton.style.display = 'block';
+            }
             rankIcons.forEach((icon, index) => {
                 if (index < monsterRankSelected) {
                     icon.src = '../icons/star-full.png'
@@ -182,9 +187,9 @@ window.onload = (event) => {
     //hunt overlay
     function huntResultOverlay(event) {
         
-        if (event.target === openOverlay && monsterRankSelected !== -1) {
+        if (event.target === openOverlay) {
             overlay.style.display = 'block';
-
+           
             //gather chosen weapon, monsterrank and region
             const currentWeaponApidata = weaponsData[currentIndex]
             const currentWeaponId = currentWeaponApidata.id
@@ -262,9 +267,7 @@ window.onload = (event) => {
             const battleResult = defaultResult + rankDif*20 + elementModifier
             console.log('random:',battleResult)
             
-
-            //determine success/failure
-            const succes = Math.random()*100
+                const succes = Math.random()*100
                 if (battleResult > succes) {
                     console.log('succes')
                     overlayHuntWin()
@@ -419,12 +422,9 @@ window.onload = (event) => {
 
                         
                     }
-                }
-                
+                }   
                 
             })
-        } else {
-            const pickRegion = confirm('You must choose a region.')
         }
     }
 
@@ -498,10 +498,9 @@ window.onload = (event) => {
 
     function overlayHuntWin() {
         const huntOverlay = document.getElementById('huntOverlay')
-        console.log('hi')
         let html = ` <p class="huntResult">SUCCES</p>
         <img class="overlayMonster" src="../icons/monsters/${randomMonster.name}.png" alt="">
-        <p class="huntMessage">You successfully hunted a:</p>
+        <p class="huntMessage">You successfully hunted a</p>
         <p class="rankMonster">${randomMonster.name}</p>`
 
         huntOverlay.innerHTML = html
@@ -513,7 +512,7 @@ window.onload = (event) => {
 
         let html = `<p class="huntResult">FAIL</p>
         <img class="overlayMonster" src="../icons/monsters/${randomMonster.name}.png" alt="">
-        <p class="huntMessage">You failed to hunted a:</p>
+        <p class="huntMessage">You failed to hunted a</p>
         <p class="rankMonster">?</p>`
 
         huntOverlay.innerHTML = html
