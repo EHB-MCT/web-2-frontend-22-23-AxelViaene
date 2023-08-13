@@ -2,7 +2,13 @@
 web-2-frontend-22-23-AxelViaene - August retake
 
 Frontend: https://axelviaene.github.io/
+
 Backend: https://web2-course-project.onrender.com
+
+## Quick notes
+- Please use this website inside of Google Chrome.
+- Login make take more than a couple seconds.
+- When the site is not being used for a couple minutes (No clicking, or switching pages) you will have to close and relog.
 
 ## Introduction
 PukeiDex is a Monster Hunter World- inspired minigame where you collect information about monsters as you hunt them. Users level up their weapons as they progress through the game and will be able to take on harder environments and discover more monsters.
